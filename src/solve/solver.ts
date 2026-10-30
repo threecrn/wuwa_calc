@@ -49,7 +49,7 @@ export const AXES: Axis[] = ["weapons", "echoes", "mainstats", "sequences", "ref
  *  doesn't; a trailing `_sNrN` is what everyone else gets (S0R1 without one). Rovers and 4* are
  *  S6 on standard/4* weapons throughout. */
 export const TEAM_COSTS = ["s0r0", "s0r1mdps", "s0r1",
-  "s2r1mdps", "s3r1mdps", "s6r1mdps", "s6r1mdps_s2r1", "s6r5mdps", "s6r5"] as const;
+  "s2r1mdps", "s3r1mdps", "s3r1mdps_s0r0", "s6r1mdps", "s6r1mdps_s2r1", "s6r5mdps", "s6r5"] as const;
 export type TeamCost = typeof TEAM_COSTS[number];
 
 export interface Filters {
@@ -280,13 +280,15 @@ export function weaponOptions(m: Member, filters: Filters, sig: boolean): number
 }
 
 /** Whether every limited resonator wears their signature: `s0r0` gives nobody one and `s0r1mdps`
- *  hands out exactly one, so only those two search on standards. */
-export const sigForAll = (cost: TeamCost): boolean => cost !== "s0r0" && cost !== "s0r1mdps";
+ *  hands out exactly one, so only those two search on standards. A `_sNr0` mode gives its MDPS a
+ *  signature and its other members standard or 4* weapons. */
+export const sigForAll = (cost: TeamCost): boolean =>
+  cost !== "s0r0" && cost !== "s0r1mdps" && !/_s\d+r0$/.test(cost);
 
 export const sigAllowed = (i: number, holder: number | null, cost: TeamCost): boolean =>
-  sigForAll(cost) || (cost === "s0r1mdps" && i === holder);
+  sigForAll(cost) || (cost === "s0r1mdps" && i === holder) || (/_s\d+r0$/.test(cost) && i === holder);
 
-/** Which member of a build wears a signature — the `s0r1mdps` holder, read off the build. */
+/** Which member of a build wears a signature — the one-signature mode's holder, read off the build. */
 export const sigHolder = (members: Member[], picks: Pick[]): number | null => {
   const i = picks.findIndex((p, k) => isSignature(members[k]!.loadout, p.weapon));
   return i < 0 ? null : i;

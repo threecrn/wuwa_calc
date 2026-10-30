@@ -169,6 +169,7 @@ const COST_HELP = [
   "s0r1 mdps +r0 supports - Each team gets a single signature weapon at R1, on whichever of its main DPS gives the best DPR increase — never a support. Dual DPS teams still only get one signature weapon.",
   "s0r1 all - All limited resonators get their best signature weapon, while Rover and 4* supports may still use standard or 4* weapons.",
   "s2r1 / s3r1 / s6r1 mdps +r1 supports - One main DPS per team runs that many sequence nodes, whichever gives the best DPR increase — never a support. Everyone else stays S0 on their own signature at R1.",
+  "s3r1 mdps +s0r0 supports - One main DPS per team runs S3, whichever gives the best DPR increase — never a support. Everyone else stays S0 on a best available standard or 4* weapon.",
   "s6r1 mdps +s2r1 supports - As above at S6, with everyone else at S2 on their own signature at R1.",
   "s6r5 mdps +s0r1 supports - One main DPS per team is S6 with their signature at R5, whichever gives the best DPR increase — never a support. Everyone else stays S0 on their own signature at R1.",
   "s6r5 all - Every resonator is S6 with their best weapon at R5.",
@@ -197,7 +198,8 @@ export function comparisonFilters(): string {
       + `<select id="cost" class="tcselect" aria-label="Team Cost" title="Team Cost">`
       + option("s0r0", "s0r0 all") + option("s0r1mdps", "s0r1 mdps +r0 supports") + option("s0r1", "s0r1 all")
       + option("s2r1mdps", "s2r1 mdps +r1 supports")
-      + option("s3r1mdps", "s3r1 mdps +r1 supports") + option("s6r1mdps", "s6r1 mdps +r1 supports")
+      + option("s3r1mdps", "s3r1 mdps +r1 supports") + option("s3r1mdps_s0r0", "s3r1 mdps +s0r0 supports")
+      + option("s6r1mdps", "s6r1 mdps +r1 supports")
       + option("s6r1mdps_s2r1", "s6r1 mdps +s2r1 supports") + option("s6r5mdps", "s6r5 mdps +s0r1 supports")
       + option("s6r5", "s6r5 all")
       + `</select></div>`

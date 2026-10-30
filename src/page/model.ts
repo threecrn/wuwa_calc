@@ -682,7 +682,7 @@ const COMPARE_PARAM: Record<Axis, string> = { weapons: "cw", echoes: "ce", mains
 const SCOPED_PARAM = "cs";
 const COST_CODE: Record<TeamCost, string> = {
   s0r0: "r0", s0r1mdps: "r1m", s0r1: "r1",
-  s2r1mdps: "s2m", s3r1mdps: "s3m", s6r1mdps: "s6m", s6r1mdps_s2r1: "s6ms2", s6r5mdps: "s6r5m", s6r5: "s6r5",
+  s2r1mdps: "s2m", s3r1mdps: "s3m", s3r1mdps_s0r0: "s3m0", s6r1mdps: "s6m", s6r1mdps_s2r1: "s6ms2", s6r5mdps: "s6r5m", s6r5: "s6r5",
 };
 
 const FILTER_GROUPS: { include: string; exclude: string; map: Map<string, ResonatorFilter> }[] = [
